@@ -14,7 +14,7 @@
 
 {#if visible}
 <div transition:fade={{duration: 176}} id="content">
-  <video autoplay playsinload>
+  <video autoplay loop playsinload>
     <track kind="captions" srclang="en" label="english_captions">
     <source src="drive.mp4" type="video/mp4"/>
   </video>

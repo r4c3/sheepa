@@ -38,7 +38,7 @@
         min-height: calc(100vh - 108px);
         width: 100%;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
         flex-direction: column;
         padding: 0px 12px;

@@ -3,7 +3,7 @@
     export let imgUrl
 </script>
 
-<div id="card" style="--img: url(dl/{imgUrl});"><a href="/#/shop/{imgUrl}" download>
+<div id="card" style="--img: url(dl/{imgUrl});"><a href="/dl/{imgUrl}" download>
     <div id="image"/>
     <div id="content">
        <h4>{title}</h4>

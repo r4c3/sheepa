@@ -175,6 +175,42 @@
             "shoeSizing": false,
             "imgUrl": "bowl.png",
             "id": 50002
+        },
+        {
+            "title": "Gently Used Styrofoam Cup (12 fl oz)",
+            "category": "other",
+            "price": 3.49,
+            "description": "this is a product. this is a product. this is a product.",
+            "shoeSizing": false,
+            "imgUrl": "styro.png",
+            "id": 50003
+        },
+        {
+            "title": "Hand Picked Georgian Watermelon (ripe)",
+            "category": "other",
+            "price": 8.15,
+            "description": "this is a product. this is a product. this is a product.",
+            "shoeSizing": false,
+            "imgUrl": "melon.png",
+            "id": 50004
+        },
+        {
+            "title": "Baken-Ets Hot 'N Spicy Pork Rines",
+            "category": "other",
+            "price": 320.39,
+            "description": "this is a product. this is a product. this is a product.",
+            "shoeSizing": false,
+            "imgUrl": "rinds.png",
+            "id": 50004
+        },
+        {
+            "title": "Cranberry Sprite Pop Tab (LeBron James)",
+            "category": "other",
+            "price": 0.21,
+            "description": "this is a product. this is a product. this is a product.",
+            "shoeSizing": false,
+            "imgUrl": "pop.png",
+            "id": 50004
         }
     ],
     "files": [
@@ -233,6 +269,10 @@
         {
             "title": "SMALL LOGO DESKTOP (WHITE ON BLACK) [1920x1080]",
             "link": "sheepa_0014.png"
+        },
+        {
+            "title": "PHONE REPEATED TEXT \"RANDY\" (BLACK ON MOCHA) [828x1792]",
+            "link": "sheepa_0015.png"
         }
     ],
     "collections": [
