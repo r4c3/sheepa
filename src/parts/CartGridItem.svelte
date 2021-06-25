@@ -1,5 +1,6 @@
 <script>
     export let id
+    export let ind
     import Data from "../../public/shop.json"
     const items = Data.shop
     console.log(items)
@@ -9,8 +10,13 @@
             thisItemData = items[i]
         }
     }
-    function removeFromCart() {
-        
+    function removeItem() {
+        let cartData = JSON.parse(localStorage.getItem("cart"))
+        console.log(cartData)
+        cartData.splice(ind, ind + 1)
+        localStorage.setItem("cart", JSON.stringify(cartData))
+        console.log(cartData, localStorage.getItem("cart"))
+        id = id
     }
 </script>
 
@@ -22,11 +28,10 @@
     </div>
     <div id="end">
         <h3>${thisItemData.price}</h3>
-        <button on:click={removeFromCart}>REMOVE</button>
+        <button on:click={() => removeItem()}>REMOVE</button>
         <button>ADD DUPLICATE</button>
     </div>
 </div>
-
 
 <style>
     #container {

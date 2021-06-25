@@ -34,9 +34,4 @@
         text-transform: uppercase;
         color: var(--black);
     }
-    p {
-        color: var(--black);
-        width: 100%;
-        text-align: right;
-    }
 </style>

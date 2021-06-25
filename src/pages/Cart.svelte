@@ -11,17 +11,21 @@
         visible = true
         window.scrollTo({top: 0, behavior: "smooth"});
     })
-    const cartData = JSON.parse(localStorage.getItem("cart"))
+    let cartData = JSON.parse(localStorage.getItem("cart"))
 </script>
 
 {#if visible}
 <div transition:fade={{duration: 176}} id="content">
     <h1>SHOPPING CART</h1>
+    {#if cartData.length > 0}
     <div id="block">
-        {#each cartData as id}
-            <CartGridItem id={id}/>
+        {#each cartData as id, i}
+            <CartGridItem id={id} ind={i}/>
         {/each}
     </div>
+    {:else}
+        <h2>YOUR CART IS CURRENTLY EMPTY. <a href="/#/shop">CLICK HERE TO VISIT THE SHOP.</a></h2>
+    {/if}
 </div>
 {/if}
 
@@ -33,9 +37,14 @@
     }
     h2 {
         color: var(--black);
-        transform: translateY(-40px);
         user-select: none;
         cursor: pointer;
+    }
+    a {
+        color: inherit;
+    }
+    a:hover {
+        text-decoration: underline;
     }
     #content {
         min-height: calc(100vh - 108px);
