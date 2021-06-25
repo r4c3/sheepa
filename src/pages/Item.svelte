@@ -27,6 +27,14 @@
     }
     let sizeSelected = "NONE"
     let quantityRemaining = "N/A"
+    function addToCart() {
+        if (localStorage.getItem("cart") == null) {
+            localStorage.setItem("cart", "[]")
+        }
+        const old = JSON.parse(localStorage.getItem("cart"))
+        old.push(thisItemData.id)
+        localStorage.setItem("cart", JSON.stringify(old))
+    }
 </script>
 
 {#if visible}
@@ -72,7 +80,7 @@
         {/if}
         <h2 class="gridText">SIZE SELECTED: {sizeSelected}</h2>
         <h2 class="gridText" id="quantity">QUANTITY REMAINING: {quantityRemaining}</h2>
-        <div id="addToCart"><h1>ADD TO CART</h1></div>
+        <div id="addToCart" on:click={addToCart}><h1>ADD TO CART</h1></div>
         <div id="bottomLinks">
             <button on:click={handleSizeSelect(6)}>COPY W2C LINK</button>
             <button>SUBMIT TO FEED</button>

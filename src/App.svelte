@@ -15,6 +15,7 @@
 	import Gallery from './pages/Gallery.svelte';
 	import Item from './pages/Item.svelte'
 	import Collections from './pages/Collections.svelte';
+	import Cart from './pages/Cart.svelte';
 
 	console.log("hello, what are you doing here?")
 </script>
@@ -31,7 +32,8 @@
 		"/feed": Feed,
 		"/files": Files,
 		"/gallery": Gallery,
-		"/collections": Collections
+		"/collections": Collections,
+		"/cart": Cart
 	}}/>
 	</div>
 	<Footer/>
