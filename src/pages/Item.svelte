@@ -148,6 +148,7 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        user-select: none;
     }
     #quantity {
         margin-bottom: 12px;

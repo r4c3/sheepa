@@ -41,7 +41,6 @@
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(245px, 280px));
-    justify-content: space-around;
     gap: 12px;
     padding: 12px;
   }
