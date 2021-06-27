@@ -26,6 +26,7 @@
     {:else}
         <h2>YOUR CART IS CURRENTLY EMPTY. <a href="/#/shop">CLICK HERE TO VISIT THE SHOP.</a></h2>
     {/if}
+    <h1>TOTAL = ${}</h1>
 </div>
 {/if}
 
