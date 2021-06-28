@@ -39,8 +39,8 @@
     <div id="feed">
         {#each postsArray as post}
             <div id="imgBox">
-            <img src="{post.imgUrl}" alt="feed post"/>
-            <div id="overlay"><p>u/{post.author}</p></div>
+                <img src="{post.imgUrl}" alt="feed post"/>
+                <div id="overlay"><p>u/{post.author}</p></div>
             </div>
         {/each}
     </div>
@@ -51,7 +51,6 @@
     p {
         margin-left: 2px;
         font-size: 18px;
-        transform: translateY(1px);
     }
     #overlay {
         position: absolute;
@@ -63,6 +62,7 @@
     #imgBox {
         position: relative;
         border: 2px solid var(--black);
+        border-bottom: 0px;
         margin-bottom: 8px;
     }
     #feed {
@@ -85,6 +85,7 @@
         color: white;
     }
     #submit {
+        margin-top: 12px;
         width: 100%;
         height: 26px;
         background-color: var(--black);
@@ -92,6 +93,7 @@
         position: sticky;
         position: -webkit-sticky;
         top: 0;
+        z-index: 1;
     }
     h1 {
         color: var(--black);
