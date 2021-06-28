@@ -18,6 +18,7 @@
     
     const remove = () => {
         $products = $products.filter(item => product.id != item.id)
+        $price -= product.quantity * product.price
     }
 </script>
 

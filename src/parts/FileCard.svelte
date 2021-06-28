@@ -23,7 +23,7 @@
         background: var(--img);
         background-position: center;
         background-size: contain;
-        background-repeat: no-repeat;
+        background-repeat: round;
         height: 320px;
     }
     #content {
