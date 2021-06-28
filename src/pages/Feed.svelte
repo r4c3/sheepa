@@ -10,28 +10,48 @@
         visible = true
         window.scrollTo({top: 0, behavior: "smooth"});
     })
-    function fetchPosts() {
-        fetch("https://www.reddit.com/r/sheepa.json")
+    let postsArray = []
+    async function fetchPosts() {
+        await fetch("https://www.reddit.com/r/sheepa.json")
         .then(response => response.json())
         .then(body => {
             for (let i = 0; i < body.data.children.length; i++) {
-                if (body.data.children[index].post_hint == 'image') {
-                    let
+                if (body.data.children[i].post_hint = 'image') {
+                    let post = {
+                        "imgUrl": body.data.children[i].data.url_overridden_by_dest,
+                        "link": body.data.children[i].data.permalink
+                    }
+                    postsArray.push(post)
                 }
             }
         })
     }
+    fetchPosts()
 </script>
 
 {#if visible}
 <div transition:fade={{duration: 176}} id="content">
     <div id="submit">
-        <a href="https://www.reddit.com/r/sheepa"><h3>VISIT r/SHEEPA TO SUBMIT TO FEED</h3></a>
+        <a href="https://www.reddit.com/r/sheepa" target="_blank"><h3>VISIT r/SHEEPA TO SUBMIT TO FEED</h3></a>
+    </div>
+    <div id="feed">
+        {#each postsArray as post}
+            <div id="postBox" style="background-image: url({post.imgUrl})"/>
+        {/each}
     </div>
 </div>
 {/if}
 
 <style>
+    #feed {
+        margin: 12px;
+        border: 2px solid var(--black);
+    }
+    #postBox {
+        height: 300px;
+        background-position: center;
+        background-size: contain;
+    }
     h3 {
         color: var(--bg_color);
         transition: all 0.15s linear;
