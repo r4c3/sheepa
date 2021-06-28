@@ -1,51 +1,44 @@
 <script>
-    export let id
-    export let ind
-    let on = true
-    import Data from "../../public/shop.json"
-    const items = Data.shop
-    let thisItemData
-    for (let i = 0; i < items.length; i++) {
-        if (id == items[i].id) {
-            thisItemData = items[i]
+    import { products, price } from '../cart.js'
+    export let product
+
+    const cop = () => {
+        product.quantity++
+        $products = $products
+        $price += product.price
+    }
+
+    const drop = () => {
+        if (product.quantity > 0) {
+            product.quantity--
+            $products = $products
+            $price -= product.price
         }
     }
-    function removeItem() {
-        let cartData = JSON.parse(localStorage.getItem("cart"))
-        cartData.splice(ind, ind + 1)
-        localStorage.setItem("cart", JSON.stringify(cartData))
-        on = false
-        console.log(cartData)
-    }
-    function dupeItem() {
-        let cartData = JSON.parse(localStorage.getItem("cart"))
-        cartData.push(id)
-        localStorage.setItem("cart", JSON.stringify(cartData))
+    
+    const remove = () => {
+        $products = $products.filter(item => product.id != item.id)
     }
 </script>
 
-{#if on}
-<div id="container" class="cart{ind}">
-    <a href="/#/shop/{id}"><img src="shop_r/{thisItemData.imgUrl}" alt="{thisItemData.imgUrl} product preview"/></a>
+<div id="container">
+    <a href="/#/shop/{product.id}"><img src="shop_r/{product.imgUrl}" alt="{product.imgUrl} product preview"/></a>
     <div id="middle">
-        <h2>{thisItemData.title}</h2>
+        <h2>{product.title}</h2>
         <h3>SIZE: 6</h3>
+        <h3>QUANTITY IN CART: {product.quantity}</h3>
     </div>
     <div id="end">
-        <h3>${thisItemData.price}</h3>
-        <button on:click={() => removeItem()}>REMOVE</button>
-        <button on:click={() => dupeItem()}>ADD DUPLICATE</button>
+        <h3>$<span class="itemPrice">{product.price}</span></h3>
+        <button on:click={cop}>+</button>
+        <button on:click={drop}>-</button>
+        <button on:click={remove}>REMOVE</button>
     </div>
 </div>
-{/if}
-
 
 <style>
     a {
         width: 15%;
-    }
-    .hidden {
-        display: none;
     }
     #container {
         border: 2px solid var(--black);

@@ -1,15 +1,12 @@
 <script>
-    export let title
-    export let price
-    export let imgUrl
-    export let id
+    export let product = {}
 </script>
 
-<div id="card" style="--img: url(shop_r/{imgUrl});"><a href="/#/shop/{id}">
+<div id="card" style="--img: url(shop_r/{product.imgUrl});"><a href="/#/shop/{product.id}">
     <div id="image"/>
     <div id="content">
-       <h4>{title}</h4>
-       <p>${price}</p>
+       <h4>{product.title}</h4>
+       <p>${product.price}</p>
     </div></a>
 </div>
 

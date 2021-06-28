@@ -1,4 +1,5 @@
 <script>
+  import { store } from "../data.js"
   import { fade } from 'svelte/transition'
   let visible = false;
   import { onMount } from 'svelte'
@@ -10,10 +11,7 @@
     visible = true
     window.scrollTo({top: 0, behavior: "smooth"});
   })
-
-  import Data from "../../public/shop.json"
   import ShopCard from "../parts/ShopCard.svelte"
-  const items = Data.shop
 </script>
 
 {#if visible}
@@ -40,8 +38,8 @@
   </div>
   <div id="grid">
     <a href="/#/uniques"><div id="card"><h1>GO TO UNIQUES</h1></div></a>
-    {#each items as item}
-      <ShopCard title={item.title} price={item.price} imgUrl={item.imgUrl} id={item.id}/>
+    {#each $store as product}
+      <ShopCard product={product}/>
     {/each}
   </div>
 </div>

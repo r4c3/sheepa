@@ -1,6 +1,7 @@
 <script>
     import { fade } from 'svelte/transition'
     import CartGridItem from "../parts/CartGridItem.svelte"
+    import { products, price } from '../cart.js'
     let visible = false;
     import { onMount } from 'svelte'
     function sleep(ms) {
@@ -11,30 +12,27 @@
         visible = true
         window.scrollTo({top: 0, behavior: "smooth"});
     })
-    let cartData = JSON.parse(localStorage.getItem("cart"))
 </script>
 
 {#if visible}
 <div transition:fade={{duration: 176}} id="content">
     <h1>SHOPPING CART</h1>
-    {#if cartData.length > 0}
     <div id="block">
-        {#each cartData as id, i}
-            <CartGridItem id={id} ind={i}/>
+        {#if $products.length == 0}
+            <h2>YOUR CART IS CURRENTLY EMPTY. <a href="/#/shop">CLICK HERE TO VISIT THE SHOP.</a></h2>
+        {:else}
+        {#each $products as product}
+            <CartGridItem product={product}/>
         {/each}
+        {/if}
     </div>
-    {:else}
-        <h2>YOUR CART IS CURRENTLY EMPTY. <a href="/#/shop">CLICK HERE TO VISIT THE SHOP.</a></h2>
-    {/if}
-    <h1>TOTAL = ${}</h1>
+    <h1 id="price">TOTAL = ${Math.round($price * 100) / 100}</h1>
 </div>
 {/if}
 
 <style>
-    h1 {
-        color: var(--black);
-        font-size: 40px;
-        margin-bottom: 10px;
+    #price {
+        margin-top: 10px;
     }
     h2 {
         color: var(--black);
@@ -46,6 +44,11 @@
     }
     a:hover {
         text-decoration: underline;
+    }
+    h1 {
+        color: var(--black);
+        font-size: 40px;
+        margin-bottom: 10px;
     }
     #content {
         min-height: calc(100vh - 108px);

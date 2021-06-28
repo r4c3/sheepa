@@ -3,7 +3,6 @@
     import { fade } from 'svelte/transition'
     import { onMount } from 'svelte';
     let visible = false;
-    let right;
     let thisItemData
     const loc = $location.substring(6)
     function sleep(ms) {
@@ -18,33 +17,38 @@
         visible = true
         window.scrollTo({top: 0, behavior: "smooth"});
     })
-    import Data from "../../public/shop.json"
-    const items = Data.shop
-    for (let i = 0; i < items.length; i++) {
-        if (loc == items[i].id) {
-            thisItemData = items[i]
+    import { store } from '../data.js'
+    for (let i = 0; i < $store.length; i++) {
+        if (loc == $store[i].id) {
+            thisItemData = $store[i]
         }
     }
     let sizeSelected = "NONE"
     let quantityRemaining = "N/A"
+
+    import { products, price } from '../cart.js'
     function addToCart() {
-        if (localStorage.getItem("cart") == null) {
-            localStorage.setItem("cart", "[]")
+        $price += thisItemData.price
+        for (let item of $products) {
+            if (item.id == thisItemData.id) {
+                thisItemData.quantity++
+                return
+            }
         }
-        const old = JSON.parse(localStorage.getItem("cart"))
-        old.push(thisItemData.id)
-        localStorage.setItem("cart", JSON.stringify(old))
+        thisItemData.quantity = 1
+        $products = [...$products, thisItemData]
     }
+    let rightHeight
 </script>
 
 {#if visible}
 <div transition:fade={{duration: 176}} id="content">
-    <div id="left">
+    <div id="left" style="height: {rightHeight - 24}px">
         {#each thisItemData.productImages as image}
             <img id="productImage" src="shop_r/{image}" alt="{image} product"/>
         {/each}
     </div>
-    <div id="right" bind:this={right}>
+    <div id="right" bind:clientHeight={rightHeight}>
         <div id="preSize">
             <h2 id="itemTitle">{thisItemData.title}</h2>
         <div id="description"><p>{thisItemData.description} Part of the <a href="/#/collections/{thisItemData.collection}">{thisItemData.collection}</a> collection.</p></div>
@@ -191,7 +195,6 @@
     }
     #left {
         width: calc(50% - 1px);
-        height: 1252px;
         margin: 12px 0px;
         overflow-y: scroll;
         display: flex;
