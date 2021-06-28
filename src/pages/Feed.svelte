@@ -36,7 +36,7 @@
     </div>
     <div id="feed">
         {#each postsArray as post}
-            <div id="postBox" style="background-image: url({post.imgUrl})"/>
+            <img src="{post.imgUrl}" alt="feed post"/>
         {/each}
     </div>
 </div>
@@ -45,12 +45,17 @@
 <style>
     #feed {
         margin: 12px;
-        border: 2px solid var(--black);
+        columns: 12 200px;
+        column-gap: 8px;
     }
-    #postBox {
-        height: 300px;
-        background-position: center;
-        background-size: contain;
+    img {
+        width: 150px;
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 4px;
+    }
+    img {
+        max-width: 100%;
     }
     h3 {
         color: var(--bg_color);
