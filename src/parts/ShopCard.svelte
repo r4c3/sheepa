@@ -22,11 +22,13 @@
     #image {
         background: var(--img);
         background-position: center;
-        background-size: cover;
+        background-size: contain;
         background-repeat: no-repeat;
         height: 320px;
     }
     #content {
+        height: 100%;
+        position: relative;
         padding: 8px;
         padding-top: 6px;
     }
@@ -37,6 +39,9 @@
     p {
         color: var(--black);
         width: 100%;
+        position: absolute;
+        bottom: 340px;
+        left: -8px;
         text-align: right;
     }
 </style>

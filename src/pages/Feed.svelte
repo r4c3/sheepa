@@ -95,12 +95,6 @@
         top: 0;
         z-index: 1;
     }
-    h1 {
-        color: var(--black);
-        transform: translateY(-40px);
-        user-select: none;
-        cursor: pointer;
-    }
     #content {
         min-height: calc(100vh - 108px);
         width: 100%;

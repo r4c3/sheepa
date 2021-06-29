@@ -9,8 +9,10 @@
         return new Promise(resolve => setTimeout(resolve, ms));
     }
     function handleSizeSelect(size) {
-        sizeSelected = size
-        quantityRemaining = thisItemData.availability[size]
+        if (thisItemData.availability) {
+            sizeSelected = size
+            quantityRemaining = thisItemData.availability[size]
+        }    
     }
     onMount(async () => {
         await sleep(350)
@@ -27,6 +29,7 @@
     let quantityRemaining = "N/A"
 
     import { products, price } from '../cart.js'
+    let addToCartText = "ADD TO CART"
     function addToCart() {
         $price += thisItemData.price
         for (let item of $products) {
@@ -54,37 +57,41 @@
         <div id="description"><p>{thisItemData.description} Part of the <a href="/#/collections/{thisItemData.collection}">{thisItemData.collection}</a> collection.</p></div>
             <h2>${thisItemData.price}</h2>
         </div>
-        {#if thisItemData.shoeSizing}
-            <div class="sizeGrid">
-                <button on:click={() => handleSizeSelect(6)}>6</button>
-                <button on:click={() => handleSizeSelect(6.5)}>6.5</button>
-                <button on:click={() => handleSizeSelect(7)}>7</button>
-                <button on:click={() => handleSizeSelect(7.5)}>7.5</button>
-                <button on:click={() => handleSizeSelect(8)}>8</button>
-                <button on:click={() => handleSizeSelect(8.5)}>8.5</button>
-                <button on:click={() => handleSizeSelect(9)}>9</button>
-                <button on:click={() => handleSizeSelect(9.5)}>9.5</button>
-                <button on:click={() => handleSizeSelect(10)}>10</button>
-                <button on:click={() => handleSizeSelect(10.5)}>10.5</button>
-                <button on:click={() => handleSizeSelect(11)}>11</button>
-                <button on:click={() => handleSizeSelect(11.5)}>11.5</button>
-                <button on:click={() => handleSizeSelect(12)}>12</button>
-                <button on:click={() => handleSizeSelect(12.5)}>12.5</button>
-                <button on:click={() => handleSizeSelect(13)}>13</button>
-                <button on:click={() => handleSizeSelect(13.5)}>13.5</button>
-            </div>
+        {#if thisItemData.collection != "UNIQUES"}
+            {#if thisItemData.shoeSizing}
+                <div class="sizeGrid">
+                    <button on:click={() => handleSizeSelect(6)}>6</button>
+                    <button on:click={() => handleSizeSelect(6.5)}>6.5</button>
+                    <button on:click={() => handleSizeSelect(7)}>7</button>
+                    <button on:click={() => handleSizeSelect(7.5)}>7.5</button>
+                    <button on:click={() => handleSizeSelect(8)}>8</button>
+                    <button on:click={() => handleSizeSelect(8.5)}>8.5</button>
+                    <button on:click={() => handleSizeSelect(9)}>9</button>
+                    <button on:click={() => handleSizeSelect(9.5)}>9.5</button>
+                    <button on:click={() => handleSizeSelect(10)}>10</button>
+                    <button on:click={() => handleSizeSelect(10.5)}>10.5</button>
+                    <button on:click={() => handleSizeSelect(11)}>11</button>
+                    <button on:click={() => handleSizeSelect(11.5)}>11.5</button>
+                    <button on:click={() => handleSizeSelect(12)}>12</button>
+                    <button on:click={() => handleSizeSelect(12.5)}>12.5</button>
+                    <button on:click={() => handleSizeSelect(13)}>13</button>
+                    <button on:click={() => handleSizeSelect(13.5)}>13.5</button>
+                </div>
+            {:else}
+                <div class="sizeGrid">
+                    <button on:click={() => handleSizeSelect("XS")}>XS</button>
+                    <button on:click={() => handleSizeSelect("S")}>S</button>
+                    <button on:click={() => handleSizeSelect("M")}>M</button>
+                    <button on:click={() => handleSizeSelect("L")}>L</button>
+                    <button on:click={() => handleSizeSelect("XL")}>XL</button>
+                </div>
+            {/if}
+            <h2 class="gridText">SIZE SELECTED: {sizeSelected}</h2>
+            <h2 class="gridText" id="quantity">QUANTITY REMAINING: {quantityRemaining}</h2>
         {:else}
-            <div class="sizeGrid">
-                <button on:click={() => handleSizeSelect("XS")}>XS</button>
-                <button on:click={() => handleSizeSelect("S")}>S</button>
-                <button on:click={() => handleSizeSelect("M")}>M</button>
-                <button on:click={() => handleSizeSelect("L")}>L</button>
-                <button on:click={() => handleSizeSelect("XL")}>XL</button>
-            </div>
+            <p id="sizeUnique">This item is a unique. One of its kind was produced with size description "{thisItemData.size}". Go to the sizing chart for more info about this specific item.</p>
         {/if}
-        <h2 class="gridText">SIZE SELECTED: {sizeSelected}</h2>
-        <h2 class="gridText" id="quantity">QUANTITY REMAINING: {quantityRemaining}</h2>
-        <div id="addToCart" on:click={addToCart}><h1>ADD TO CART</h1></div>
+        <div id="addToCart" on:click={addToCart}><h1>{addToCartText}</h1></div>
         <div id="bottomLinks">
             <button on:click={handleSizeSelect(6)}>COPY W2C LINK</button>
             <button>SUBMIT TO FEED</button>
@@ -105,6 +112,12 @@
 {/if}
 
 <style>
+    #sizeUnique {
+        color: var(--black);
+        padding: 12px;
+        text-align: justify;
+        font-weight: 200;
+    }
     button:hover {
         background-color: black !important;
     }

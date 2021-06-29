@@ -12,6 +12,7 @@
     window.scrollTo({top: 0, behavior: "smooth"});
   })
   import ShopCard from "../parts/ShopCard.svelte"
+import { products } from "../cart.js";
 </script>
 
 {#if visible}
@@ -39,7 +40,9 @@
   <div id="grid">
     <a href="/#/uniques"><div id="card"><h1>GO TO UNIQUES</h1></div></a>
     {#each $store as product}
-      <ShopCard product={product}/>
+      {#if product.collection != "UNIQUES"}
+        <ShopCard product={product}/>
+      {/if}
     {/each}
   </div>
 </div>
@@ -71,7 +74,7 @@
     width: 72%;
     height: min-content;
     display: grid;
-    grid-template-columns: repeat(auto-fit, 260px);
+    grid-template-columns: repeat(3, 1fr);
     gap: 12px;
     padding: 12px;
   }
@@ -91,5 +94,43 @@
     color: var(--black);
     text-align: center;
     transform: translateY(-12px);
+  }
+  @media all and (max-width: 1100px) {
+    #grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media all and (max-width: 900px) {
+    #content {
+      flex-direction: column;
+    }
+    #grid, #filter {
+      width: calc(100% - 24px)
+    }
+  }
+  @media all and (min-width: 1100px) {
+    #grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media all and (min-width: 1400px) {
+    #grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  @media all and (min-width: 2100px) {
+    #grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+  @media all and (min-width: 2900px) {
+    #grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+  @media all and (min-width: 3400px) {
+    #grid {
+      grid-template-columns: repeat(7, 1fr);
+    }
   }
 </style>

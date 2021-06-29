@@ -10,10 +10,8 @@
       visible = true
       window.scrollTo({top: 0, behavior: "smooth"});
   })
-
-  import Data from "../../public/shop.json"
   import ShopCard from "../parts/ShopCard.svelte"
-  const items = Data.uniques
+  import { store } from '../data.js'
 </script>
 
 {#if visible}
@@ -24,8 +22,10 @@
       <h1>ABOUT UNIQUES</h1>
       <p>uniques, one-of-ones, originals, whatever. all items on this section of the shop have a quantity of one; once the item is purchased, it will be out of stock.</p>
     </div></a>
-    {#each items as item}
-      <ShopCard title={item.title} price={item.price} imgUrl={item.imgUrl} id={item.id}/>
+    {#each $store as product}
+      {#if product.collection == "UNIQUES"}
+        <ShopCard product={product}/>
+      {/if}
     {/each}
   </div>
 </div>
