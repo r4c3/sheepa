@@ -89,6 +89,9 @@
         width: 100%;
         height: 26px;
         background-color: var(--black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-align: center;
         position: sticky;
         position: -webkit-sticky;
@@ -113,6 +116,11 @@
     @media all and (max-width: 900px) {
         #feed {
             columns: 12 230px;
+        }
+    }
+    @media all and (max-width: 440px) {
+        h3 {
+            font-size: 4.4vw;
         }
     }
 </style>

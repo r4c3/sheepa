@@ -12,30 +12,81 @@
     window.scrollTo({top: 0, behavior: "smooth"});
   })
   import ShopCard from "../parts/ShopCard.svelte"
-import { products } from "../cart.js";
 </script>
 
 {#if visible}
 <div transition:fade={{duration: 176}} id="content">
   <div id="filter">
-    <h3>CATEGORIES</h3>
-    <h3 class="tab">HEADWEAR</h3>
-    <h3 class="tab">SHORT SLEEVE</h3>
-    <h3 class="tab">LONG SLEEVE</h3>
-    <h3 class="tab">SHORTS</h3>
-    <h3 class="tab">PANTS</h3>
-    <h3 class="tab">FOOTWEAR</h3>
-    <h3 class="tab">ACCESSORIES</h3>
-    <h3 class="tab">OTHER</h3>
-    <h3>LOCAL PICKUP</h3>
-    <h3 class="tab">AUBURN, AL</h3>
-    <h3 class="tab">CATAULA, GA</h3>
-    <h3 class="tab">COLUMBUS, GA</h3>
-    <h3 class="tab">HAMILTON, GA</h3>
-    <h3>SHIPPING</h3>
-    <h3 class="tab">U.S.</h3>
-    <h3 class="tab">NORTH AMERICA</h3>
-    <h3 class="tab">INTERNATIONAL</h3>
+    <div>
+      <h2>CATEGORIES</h2>
+      <label class="container">
+        <input type="checkbox" checked="checked">
+        <span class="checkmark"></span>
+        <h3>DOMEPIECES</h3>
+      </label>
+      <label class="container">
+        <input type="checkbox" checked="checked">
+        <span class="checkmark"></span>
+        <h3>TORSO</h3>
+      </label>
+      <label class="container">
+        <input type="checkbox" checked="checked">
+        <span class="checkmark"></span>
+        <h3>PANTS & SHORTS</h3>
+      </label>
+      <label class="container">
+        <input type="checkbox" checked="checked">
+        <span class="checkmark"></span>
+        <h3>FOOTPIECES</h3>
+      </label>
+      <label class="container">
+        <input type="checkbox" checked="checked">
+        <span class="checkmark"></span>
+        <h3>OTHER</h3>
+      </label>
+    </div>
+    <div>
+      <h2>LOCAL PICKUP</h2>
+      <label class="container">
+        <input type="checkbox">
+        <span class="checkmark"></span>
+        <h3>AUBURN, AL</h3>
+      </label>
+      <label class="container">
+        <input type="checkbox">
+        <span class="checkmark"></span>
+        <h3>COLUMBUS, GA</h3>
+      </label>
+      <label class="container">
+        <input type="checkbox">
+        <span class="checkmark"></span>
+        <h3>HARRIS COUNTY, GA</h3>
+      </label>
+      <label class="container">
+        <input type="checkbox">
+        <span class="checkmark"></span>
+        <h3>ATLANTA, GA</h3>
+      </label>
+    </div>
+    <div>
+      <h2>SHIPPING</h2>
+      <label class="container">
+        <input type="checkbox">
+        <span class="checkmark"></span>
+        <h3>U.S.</h3>
+      </label>
+      <label class="container">
+        <input type="checkbox">
+        <span class="checkmark"></span>
+        <h3>CAN & MEX</h3>
+      </label>
+      <label class="container">
+        <input type="checkbox">
+        <span class="checkmark"></span>
+        <h3>REST OF GLOBE</h3>
+      </label>
+    </div>
+    <button id="update">UPDATE CATALOG</button>
   </div>
   <div id="grid">
     <a href="/#/uniques"><div id="card"><h1>GO TO UNIQUES</h1></div></a>
@@ -49,6 +100,52 @@ import { products } from "../cart.js";
 {/if}
 
 <style>
+
+  #filter div {
+    margin-bottom: 12px;
+  }
+  #update:hover {
+    background-color: black;
+  }
+  #update {
+    border: 2px solid var(--black);
+    background-color: transparent;
+    margin-top: 6px;
+    font-size: 20px;
+    color: var(--black);
+    padding: 8px;
+    transition: 0.2s ease all;
+  }
+  h2 {
+    color: var(--black);
+    margin-bottom: 4px;
+  }
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+  }
+  .checkmark {
+    height: 15px;
+    width: 15px;
+    border: 2px solid var(--black);
+    margin-right: 6px;
+    transition: 0.2s ease all;
+  }
+  .checkmark:hover {
+    background-color: black !important;
+  }
+  .container input:checked ~ .checkmark {
+    background-color: var(--black);
+  }
+  input[type="checkbox"] {
+    margin-right: 8px;
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
   #content {
     min-height: calc(100vh - 108px);
     width: 100%;
@@ -58,7 +155,6 @@ import { products } from "../cart.js";
     width: calc(28% - 26px);
     display: flex;
     flex-direction: column;
-    align-items: center;
     border-right: 2px solid var(--black);
     padding: 12px 12px;
   }
@@ -66,9 +162,8 @@ import { products } from "../cart.js";
     width: 100%;
     color: var(--black);
     margin-bottom: 4px;
-  }
-  .tab {
-    margin-left: 42px;
+    position: relative;
+    transform: translateY(2px);
   }
   #grid {
     width: 72%;
@@ -107,6 +202,11 @@ import { products } from "../cart.js";
     #grid, #filter {
       width: calc(100% - 24px)
     }
+    #filter {
+      border-right: 0px;
+      border-bottom: 2px solid var(--black);
+
+    }
   }
   @media all and (min-width: 1100px) {
     #grid {
@@ -131,6 +231,11 @@ import { products } from "../cart.js";
   @media all and (min-width: 3400px) {
     #grid {
       grid-template-columns: repeat(7, 1fr);
+    }
+  }
+  @media all and (max-width: 600px) {
+    h1 {
+      font-size: 6vw;
     }
   }
 </style>

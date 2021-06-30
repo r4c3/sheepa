@@ -34,7 +34,7 @@
         grid-template-columns: repeat(auto-fit, minmax(245px, 280px));
         justify-content: space-around;
         gap: 12px;
-        padding: 12px;
+        margin: 12px;
     }
     h1 {
         color: var(--black);
@@ -42,6 +42,11 @@
         margin-top: 18px;
         margin-bottom: 10px;
         font-size: 36px;
+    }
+    @media all and (max-width: 800px) {
+        h1 {
+            font-size: 4.7vw;
+        }
     }
 </style>
   

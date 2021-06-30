@@ -50,4 +50,14 @@
         justify-content: center;
         padding: 0px 12px;
     }
+    @media all and (max-width: 740px) {
+        h1 {
+            font-size: 4vw;
+        }
+    }
+    @media all and (max-width: 600px) {
+        h4 {
+            font-size: 3vw;
+        }
+    }
 </style>

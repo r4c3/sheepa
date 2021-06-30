@@ -27,7 +27,6 @@
         height: 320px;
     }
     #content {
-        height: 100%;
         position: relative;
         padding: 8px;
         padding-top: 6px;
@@ -40,8 +39,13 @@
         color: var(--black);
         width: 100%;
         position: absolute;
-        bottom: 340px;
+        top: 52px;
         left: -8px;
         text-align: right;
+    }
+    @media all and (max-width: 600px) {
+        h4, p {
+            font-size: 3vw;
+        }
     }
 </style>

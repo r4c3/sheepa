@@ -59,4 +59,9 @@
         color: var(--black);
         font-size: 20px;
     }
+    @media all and (max-width: 490px) {
+        h2 {
+            font-size: 4vw;
+        }
+    }
 </style>

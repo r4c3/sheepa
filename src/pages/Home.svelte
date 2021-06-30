@@ -53,4 +53,12 @@
     color: var(--black);
     font-size: 24px;
   }
+  @media all and (max-width: 630px) {
+    h1 {
+      font-size: 8.7vw;
+    }
+    h2 {
+      font-size: 3.8vw;
+    }
+  }
 </style>
