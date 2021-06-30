@@ -12,6 +12,10 @@
     window.scrollTo({top: 0, behavior: "smooth"});
   })
   import ShopCard from "../parts/ShopCard.svelte"
+
+  function updateCatalog() {
+    
+  }
 </script>
 
 {#if visible}
@@ -86,7 +90,7 @@
         <h3>REST OF GLOBE</h3>
       </label>
     </div>
-    <button id="update">UPDATE CATALOG</button>
+    <button id="update" on:click={() => updateCatalog()}>UPDATE CATALOG</button>
   </div>
   <div id="grid">
     <a href="/#/uniques"><div id="card"><h1>GO TO UNIQUES</h1></div></a>
