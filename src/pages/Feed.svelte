@@ -67,7 +67,7 @@
     }
     #feed {
         margin: 12px;
-        columns: 12 800px;
+        columns: 4 auto;
         column-gap: 8px;
     }
     img {
@@ -103,19 +103,22 @@
         width: 100%;
         padding: 0px 12px;
     }
-    @media all and (max-width: 2450px) {
+    @media all and (min-width: 1921px) {
         #feed {
-            columns: 12 570px;
+            columns: 6 auto;
         }
     }
-    @media all and (max-width: 1300px) {
+    @media all and (max-width: 1100px) {
         #feed {
-            columns: 12 390px;
+            columns: 3 auto;
         }
     }
-    @media all and (max-width: 900px) {
+    @media all and (max-width: 750px) {
         #feed {
-            columns: 12 230px;
+            columns: 2 auto;
+        }
+        p {
+            font-size: 2.9vw;
         }
     }
     @media all and (max-width: 440px) {
