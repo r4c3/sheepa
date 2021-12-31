@@ -1,5 +1,5 @@
 <script>
-    var countDownDate = new Date("Jul 1, 2021 12:00:00").getTime();
+    var countDownDate = new Date("Sep 17, 2021 12:00:00").getTime();
     var now = new Date().getTime();
     var distance = countDownDate - now;
     var seconds = Math.floor((distance / 1000))
